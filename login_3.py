@@ -9,16 +9,16 @@ if __name__ == '__main__':
 
     body = webpage.read()
     body = body.decode('utf-8')
-    pos =body.find('name="form1"')
-    start =body.find('action="',pos)+len('action="')
+    pos = body.find('name="form1"')
+    start = body.find('action="',pos)+len('action="')
     end = body.find('">',pos)
     url1 = body[start:end]
  #   print (url1)
     post = {}
     post['func']='login-session'
     post['login_source']='bor-info'
-    post['bor_id']= stuno
-    post['bor_verification']= stupw
+    post['bor_id']=stuno
+    post['bor_verification']=stupw
     post['bor_library']='XDU50'
     post = urllib.parse.urlencode(post).encode('utf-8')
 
@@ -43,7 +43,6 @@ if __name__ == '__main__':
 #    print(html)
 
     visit = []
-
     first = re.compile(r'<td class=td1 valign=top width="10%">(\d{8})')
     re_date = first.findall(html)
     for each in re_date:
@@ -57,6 +56,8 @@ if __name__ == '__main__':
         end   = html.find('</a></td>',pos)
         name.append(html[start:end])
         html  = html[end+len('width="27%"'):]
+
+        
     print("题名            应还日期")
     for i in range(len(visit)):
         print("%s  %s" % (name[i],visit[i]))
